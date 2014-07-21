@@ -1,18 +1,22 @@
-# customise stock ubuntu for use as base image
+# customise a stock ubuntu for use as base image
 #
-
-FROM ubuntu:latest
 MAINTAINER Dotcomstu <stuart@rednut.net>
+
+# use stock ubuntu image
+FROM ubuntu:latest
+
+# fix runing in docker
 RUN dpkg-divert --local --rename --add /sbin/initctl
 RUN ln -sf /bin/true /sbin/initctl
+
+# set non interactive
 ENV DEBIAN_FRONTEND noninteractive 
 
 # set local
 RUN locale-gen en_GB en_GB.UTF-8
 
 # set correct time zone
-RUN echo "Europe/London" > /etc/timezone 
-RUN dpkg-reconfigure -f noninteractive tzdata
+RUN echo "Europe/London" > /etc/timezone && dpkg-reconfigure -f noninteractive tzdata
 
 # update apt repos
 RUN apt-get update
