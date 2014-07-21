@@ -2,7 +2,7 @@
 #
 
 FROM ubuntu:latest
-MAINTAINER Dotcomstu <dotcomstu@gmail.com>
+MAINTAINER Dotcomstu <stuart@rednut.net>
 RUN dpkg-divert --local --rename --add /sbin/initctl
 RUN ln -sf /bin/true /sbin/initctl
 ENV DEBIAN_FRONTEND noninteractive 
