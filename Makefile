@@ -40,7 +40,16 @@ build_full:
 version_bump:
 	VERSION inc
 
-tag_latest:
+
+git_tag: 
+	git tag v$(VERSION)
+git_commit:
+	git commit -am " work towards $(VERSION)"
+git_push:
+	git push origin 
+
+
+tag_latest: 
 	docker tag $(REPO):$(VERSION) $(REPO):latest
 
 release: test tag_latest
@@ -73,3 +82,9 @@ ssh:
 		IP=$$(docker inspect $$ID | grep IPAddr | sed 's/.*: "//; s/".*//') && \
 		echo "SSHing into $$IP" && \
 		ssh -o UserKnownHostsFile=/dev/null -o StrictHostKeyChecking=no -i image/insecure_key root@$$IP
+
+commit:
+	git commit -am "updates for $(VERSION)"
+
+push:
+	git push origin 
