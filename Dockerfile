@@ -36,7 +36,7 @@ RUN     apt-mark hold initscripts udev plymouth mountall
 RUN	apt-get update -q -y && \
 	apt-get -qy --force-yes dist-upgrade && \
 	apt-get install -q -y \
-		curl wget supervisor apt-utils lsb-release curl wget rsync bzip2 \
+		curl wget supervisor apt-utils lsb-release curl wget rsync bzip2 util-linux \
 		unrar rar unzip vim-nox util-linux tar ca-certificates curl lsb-release \
 		binutils binfmt-support zip git vim-nox 
 
