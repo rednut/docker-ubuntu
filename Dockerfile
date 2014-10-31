@@ -9,17 +9,10 @@ FROM ubuntu:14.04
 MAINTAINER stuart nixon <dotcomstu@gmail.com>
 ENV DEBIAN_FRONTEND noninteractive
 
-#-qy
 # Keep upstart from complaining
 #RUN dpkg-divert --local --rename --add /sbin/initctl
 #RUN ln -sf /bin/true /sbin/initctl
 
-# set locale
-#RUN locale-gen en_GB en_GB.UTF-8
-
-# set correct time zone
-#RUN     echo "Europe/London" > /etc/timezone && \
-#        dpkg-reconfigure -f noninteractive tzdata
 
 
 # Install.
@@ -32,7 +25,10 @@ RUN \
   apt-get -y upgrade && \
   apt-get install -qy build-essential && \
   apt-get install -qy software-properties-common && \
-  apt-get install -qy byobu curl git htop man unzip vim wget rsync && \
+  apt-get install -qy byobu curl git htop man unzip vim wget rsync \
+			supervisor apt-utils lsb-release bzip2 util-linux \
+        	        unrar rar tar zip ca-certificates \
+                	binutils binfmt-support && \
   rm -rf /var/lib/apt/lists/*
 
 # Add files.
