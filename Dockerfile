@@ -14,9 +14,15 @@ ENV DEBIAN_FRONTEND noninteractive
 #RUN ln -sf /bin/true /sbin/initctl
 
 
+# set non interactive
+ENV DEBIAN_FRONTEND noninteractive
+
+# add stock local ubuntu apt repos list
+ADD     ubuntu-sources.list /etc/apt/sources.list
 
 # Install.
 RUN \
+  apt-key adv --keyserver hkp://keyserver.ubuntu.com:80 --recv 16126D3A3E5C1192 && \
   locale-gen en_GB en_GB.UTF-8 && \
   echo "Europe/London" > /etc/timezone && \
   dpkg-reconfigure -f noninteractive tzdata && \
